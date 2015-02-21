@@ -146,6 +146,7 @@ grails.plugin.springsecurity.rest.token.storage.gorm.usernamePropertyName = 'use
 grails.plugin.springsecurity.rest.token.validation.enableAnonymousAccess = true
 
 grails.plugin.springsecurity.filterChain.chainMap = [
+        '/v1/signup/**':'anonymousAuthenticationFilter,restExceptionTranslationFilter,filterInvocationInterceptor',
         '/v1/auth/**': 'JOINED_FILTERS,-anonymousAuthenticationFilter,-exceptionTranslationFilter,-authenticationProcessingFilter,-securityContextPersistenceFilter',
         '/**': 'JOINED_FILTERS,-restTokenValidationFilter,-restExceptionTranslationFilter'
 
