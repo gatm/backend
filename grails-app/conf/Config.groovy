@@ -138,6 +138,7 @@ grails.plugin.springsecurity.rest.logout.endpointUrl = '/v1/auth/logout'
 grails.plugin.springsecurity.rest.token.validation.endpointUrl='/v1/auth/validate'
 grails.plugin.springsecurity.rest.token.validation.active=true
 //grails.plugin.springsecurity.rest.token.validation.headerName = 'X-Auth-Token'
+grails.plugin.springsecurity.rest.token.validation.headerName = 'Authorization'
 grails.plugin.springsecurity.rest.token.storage.gorm.tokenDomainClassName = 'io.gatm.auth.AuthenticationToken'
 grails.plugin.springsecurity.rest.token.storage.gorm.tokenValuePropertyName = 'token'
 grails.plugin.springsecurity.rest.token.storage.gorm.usernamePropertyName = 'username'
