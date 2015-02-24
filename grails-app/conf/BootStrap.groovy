@@ -5,7 +5,7 @@ class BootStrap {
     def bootStrapService
 
     def init = { servletContext ->
-        new User(email:"mimhaj@gatm.io", password:"testing").save()
+        new User(email:"minhaj@gatm.io", password:"testing").save()
         bootStrapService.registerCustomJSONMarshallers()
     }
 
