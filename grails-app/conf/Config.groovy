@@ -115,3 +115,41 @@ log4j.main = {
            'org.hibernate',
            'net.sf.ehcache.hibernate'
 }
+
+//============================================================================= spring security config starts from here
+// Added by the Spring Security Core plugin:
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'io.gatm.auth.User'
+grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'io.gatm.auth.UserRole'
+grails.plugin.springsecurity.authority.className = 'io.gatm.auth.Role'
+grails.plugin.springsecurity.userLookup.usernamePropertyName = 'email'
+grails.plugin.springsecurity.securityConfigType = "InterceptUrlMap"
+grails.plugin.springsecurity.interceptUrlMap = [
+        '/**':                ['permitAll']
+]
+
+grails.plugin.springsecurity.rest.token.storage.useGorm = true
+grails.plugin.springsecurity.rest.token.validation.useBearerToken = false
+grails.plugin.springsecurity.rest.login.useJsonCredentials=true
+grails.plugin.springsecurity.rest.login.useRequestParamsCredentials=false
+grails.plugin.springsecurity.logout.postOnly = true
+
+grails.plugin.springsecurity.rest.login.endpointUrl = '/v1/auth/login'
+grails.plugin.springsecurity.rest.logout.endpointUrl = '/v1/auth/logout'
+grails.plugin.springsecurity.rest.token.validation.endpointUrl='/v1/auth/validate'
+grails.plugin.springsecurity.rest.token.validation.active=true
+//grails.plugin.springsecurity.rest.token.validation.headerName = 'X-Auth-Token'
+grails.plugin.springsecurity.rest.token.validation.headerName = 'Authorization'
+grails.plugin.springsecurity.rest.token.storage.gorm.tokenDomainClassName = 'io.gatm.auth.AuthenticationToken'
+grails.plugin.springsecurity.rest.token.storage.gorm.tokenValuePropertyName = 'token'
+grails.plugin.springsecurity.rest.token.storage.gorm.usernamePropertyName = 'username'
+
+// configuration to allow anonymous access to APIs
+grails.plugin.springsecurity.rest.token.validation.enableAnonymousAccess = true
+
+grails.plugin.springsecurity.filterChain.chainMap = [
+        '/v1/signup/**':'anonymousAuthenticationFilter,restExceptionTranslationFilter,filterInvocationInterceptor',
+        '/v1/auth/**': 'JOINED_FILTERS,-anonymousAuthenticationFilter,-exceptionTranslationFilter,-authenticationProcessingFilter,-securityContextPersistenceFilter',
+        '/**': 'JOINED_FILTERS,-restTokenValidationFilter,-restExceptionTranslationFilter'
+
+]
+//=================================================================================== spring security config  ends here
